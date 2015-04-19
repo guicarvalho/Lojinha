@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Página inicial {% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-6">
+		<img src="http://placehold.it/400x350" alt="">
+    <div class="row">
+    	<div class="col-md-10">
+		    <div style="padding-top: 5px;">
+		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
+		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
+		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
+		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
+		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
+		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
+		    </div>
+	    </div>
+   	</div>
+	</div>
+	<div class="col-md-6">
+		<h3 class="text-center">{{ object.short_description|title }}</h3>
+		<p class="text-center">{{ object.long_description|capfirst }}</p>
+		<p>De: <span style="text-decoration: line-through">R$ XX,XX</span></p>
+    <p>Por: R$ {{ object.sale_value }}</p>
+    <hr>
+    <h6>TAMANHO</h6>
+    <div class="form-group">
+	    <select class="form-control">
+	      <option>Selecione um tamanho</option>
+	      <option>P</option>
+	      <option>M</option>
+	      <option>G</option>
+	    </select>
+	  </div>
+	  <button type="button" class="btn btn-success btn-lg btn-block">Adicionar ao Carrinho</button>
+	  <button type="button" class="btn btn-default btn-lg btn-block">Adicionar à Lista de Desejos</button>
+
+	  <div class="ratings padding_top_50">
+      <p class="pull-right">3 Opiniões</p>
+      <p>
+        <span class="glyphicon glyphicon-star"></span>
+        <span class="glyphicon glyphicon-star"></span>
+        <span class="glyphicon glyphicon-star"></span>
+        <span class="glyphicon glyphicon-star"></span>
+        <span class="glyphicon glyphicon-star-empty"></span>
+        4.0 estrelas
+      </p>
+    </div>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="col-md-6">
+		<h3>Detalhes do produto</h3>
+		<p>{{ object.long_description }}</p>
+		
+		<h3>Informações</h3>
+
+		<h3>Veja mais</h3>
+		<span class="label label-default"><a href="#" style="text-decoration: none; color: #FFF;">Bolsa</a></span>
+		<span class="label label-default"><a href="#" style="text-decoration: none; color: #FFF;">Bolsa de Pano</a></span>
+	</div>
+
+	<div class="col-md-6">
+		<h3>Recomendados para você</h3>
+		<img src="http://placehold.it/180x250" alt="" style="padding-bottom: 5px;">
+    <img src="http://placehold.it/180x250" alt="" style="padding-bottom: 5px;">
+    <img src="http://placehold.it/180x250" alt="" style="padding-bottom: 5px;">
+	</div>
+</div>
+
+<div class="well margin_top_50">
+  <div class="text-right">
+    <a class="btn btn-success">Deixe Um Comentário</a>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star-empty"></span>
+      Anonymous
+      <span class="pull-right">10 dias atrás</span>
+      <p>This product was great in terms of quality. I would definitely buy another!</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star-empty"></span>
+      Anonymous
+      <span class="pull-right">12 dias atrás</span>
+      <p>I've alredy ordered another one!</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star-empty"></span>
+      Anonymous
+      <span class="pull-right">15 dias atrás</span>
+      <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
