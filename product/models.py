@@ -1,5 +1,7 @@
 # coding: utf-8
 
+from datetime import datetime
+
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -19,8 +21,10 @@ class Product(models.Model):
 
     class Meta:
         ordering = ['-publishing_date']
+        verbose_name = 'Produto'
+        verbose_name_plural = 'Produtos'
 
-    def __unicode__(self):
+    def __str__(self):
         return '{0}. {1}'.format(self.sku, self.short_description)
 
     def get_absolute_url(self):
@@ -34,8 +38,10 @@ class Category(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
 
-    def __unicode__(self):
+    def __str__(self):
         return '{0}'.format(self.name)
 
 
@@ -44,12 +50,15 @@ class ProductDetail(models.Model):
     description = models.CharField(max_length=160)
     product = models.ForeignKey('Product')
 
-    ordering = ['name']
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Detalhe Produto'
+        verbose_name_plural = 'Detalhes Produto'
 
-    def __unicode__(self):
+    def __str__(self):
         return '{0}.{1}: {2}'.format(
             self.product.sku,
-            self.product.name,
+            self.product.short_description,
             self.name
             )
 
@@ -64,12 +73,17 @@ class ProductReview(models.Model):
     product = models.ForeignKey('Product')
     client = models.ForeignKey('client.Client')
 
-    def __unicode__(self):
-        return '{0}.{1}: {2} - {3}'.format(
+    class Meta:
+        ordering = ['-creation_date']
+        verbose_name = 'Revisão Produto'
+        verbose_name_plural = 'Revisões Produto'
+
+    def __str__(self):
+        return 'SKU {0} ({1}): {2} [{3}]'.format(
             self.product.sku,
-            self.product.name,
-            self.client.name,
-            self.creation_date
+            self.product.short_description,
+            self.client,
+            datetime.strftime(self.creation_date, '%d-%m-%Y')
             )
 
 
@@ -77,5 +91,9 @@ class RelatedProduct(models.Model):
     product_origin = models.ForeignKey('Product', related_name='origin')
     related_product = models.ForeignKey('Product', related_name='related')
 
-    def __unicode__(self):
+    class Meta:
+        verbose_name = 'Produto Relacionado'
+        verbose_name_plural = 'Produtos Relacionados'
+
+    def __str__(self):
         return '{0} : {1}'.format(self.product_one.name, self.product_two.name)

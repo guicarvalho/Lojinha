@@ -23,4 +23,13 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
+        product = context.get('object')
+
+        context['product_details'] = product.productdetail_set.all()
+        context['product_reviews'] = product.productreview_set.all()
+        context['related_products'] = product.origin.all()
         return context
+
+
+# class ProductCategoryListView(ListView):
+#     pass

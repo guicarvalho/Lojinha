@@ -13,5 +13,8 @@ class Client(models.Model):
     nickname = models.CharField(max_length=50)
     photo = models.ImageField()
 
-    def __unicode__(self):
+    def __str__(self):
+        return '{0} {1}'.format(self.first_name, self.last_name)
+
+    def full_name(self):
         return '{0} {1}'.format(self.first_name, self.last_name)

@@ -10,7 +10,7 @@ class Promotion(models.Model):
     percentage_discount = models.FloatField()
     visible = models.BooleanField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -18,9 +18,9 @@ class PromotionProduct(models.Model):
     product = models.ForeignKey('product.Product')
     promotion = models.ForeignKey('Promotion')
 
-    def __unicode__(self):
+    def __str__(self):
         return '{0} - {1} - {2}%%'.format(
-            self.product.name,
+            self.product.short_description,
             self.promotion.name,
             self.promotion.percentage_discount
             )
