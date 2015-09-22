@@ -47,7 +47,7 @@
             <ul role="menu" class="dropdown-menu">
               {% list_categories as categories %}
               {% for category in categories %}
-                <li><a href="#">{{ category.name|capfirst }}</a></li>
+                <li><a href="{% url 'category-list' category.name %}">{{ category.name|capfirst }}</a></li>
               {% endfor %}
             </ul>
             <li><a href="#">Sobre</a></li>

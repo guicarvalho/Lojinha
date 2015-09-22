@@ -3,6 +3,7 @@
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.utils.decorators import method_decorator
 
 from product.models import Product
@@ -31,5 +32,21 @@ class ProductDetailView(DetailView):
         return context
 
 
-# class ProductCategoryListView(ListView):
-#     pass
+class ProductListView(ListView):
+    model = Product
+
+
+class ProductCategoryListView(ListView):
+    model = Product
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductCategoryListView, self).get_context_data(**kwargs)
+
+        # get category name
+        category_name = self.kwargs['name']
+        object_list = Product.objects.filter(category__name__contains=category_name)
+
+        context['object_list'] = object_list
+        context['category'] = category_name
+
+        return context

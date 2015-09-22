@@ -7,6 +7,13 @@ from django.db import models
 
 
 class Product(models.Model):
+    """ Product Model
+        ~~~~~~~~~~~~~
+
+    Product is a model of products of e-commerce. A product has category
+    and your attributes.
+    The products are ordering by publishing_date.
+    """
     long_description = models.TextField()
     short_description = models.CharField(max_length=150)
     min_stock = models.IntegerField()
@@ -17,7 +24,7 @@ class Product(models.Model):
     slug = models.SlugField()
     publishing_date = models.DateTimeField(auto_now_add=True)
     sku = models.CharField(max_length=50, unique=True)
-    category = models.ForeignKey('Category')
+    category = models.ForeignKey('Category', related_name='products')
 
     class Meta:
         ordering = ['-publishing_date']
@@ -25,13 +32,18 @@ class Product(models.Model):
         verbose_name_plural = 'Produtos'
 
     def __str__(self):
-        return '{0}. {1}'.format(self.sku, self.short_description)
+        return '{}. {}'.format(self.sku, self.short_description)
 
     def get_absolute_url(self):
-        return reverse('product-detail', kwargs={'slug', self.slug})
+        return reverse('products-detail', kwargs={'slug', self.slug})
 
 
 class Category(models.Model):
+    """ Category Model
+        ~~~~~~~~~~~~~~
+
+    Category is a model of category of product. The categories are ordering by name.
+    """
     name = models.CharField(max_length=60)
     color = models.CharField(max_length=30)
     description = models.CharField(max_length=50)
@@ -42,13 +54,22 @@ class Category(models.Model):
         verbose_name_plural = 'Categorias'
 
     def __str__(self):
-        return '{0}'.format(self.name)
+        return '{}'.format(self.name)
 
 
 class ProductDetail(models.Model):
+    """ Product Detail Model
+        ~~~~~~~~~~~~~~~~~~~~
+
+    Product Detail are related with Product 1:N. All details
+    of products when not are presents in product model are
+    stored here in key -> value format. Example:
+
+    material -> plastic
+    """
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=160)
-    product = models.ForeignKey('Product')
+    product = models.ForeignKey('Product', related_name='product_details')
 
     class Meta:
         ordering = ['name']
@@ -56,7 +77,7 @@ class ProductDetail(models.Model):
         verbose_name_plural = 'Detalhes Produto'
 
     def __str__(self):
-        return '{0}.{1}: {2}'.format(
+        return '{}.{}: {}'.format(
             self.product.sku,
             self.product.short_description,
             self.name
@@ -64,6 +85,12 @@ class ProductDetail(models.Model):
 
 
 class ProductReview(models.Model):
+    """ Product Review Model
+        ~~~~~~~~~~~~~~~~~~~~
+
+    Store all products reviews, by default reviews dont appear in
+    web site without permission of system administrator.
+    """
     score = models.IntegerField()
     pros = models.CharField(max_length=350)
     cons = models.CharField(max_length=350)
@@ -79,7 +106,7 @@ class ProductReview(models.Model):
         verbose_name_plural = 'Revisões Produto'
 
     def __str__(self):
-        return 'SKU {0} ({1}): {2} [{3}]'.format(
+        return 'SKU {} ({}): {} [{}]'.format(
             self.product.sku,
             self.product.short_description,
             self.client,
@@ -88,6 +115,11 @@ class ProductReview(models.Model):
 
 
 class RelatedProduct(models.Model):
+    """ Related Product Model
+        ~~~~~~~~~~~~~~~~~~~~~
+
+    Store related products.
+    """
     product_origin = models.ForeignKey('Product', related_name='origin')
     related_product = models.ForeignKey('Product', related_name='related')
 
@@ -96,4 +128,14 @@ class RelatedProduct(models.Model):
         verbose_name_plural = 'Produtos Relacionados'
 
     def __str__(self):
-        return '{0} : {1}'.format(self.product_one.name, self.product_two.name)
+        return '{} : {}'.format(self.product_one.name, self.product_two.name)
+
+
+class ImageProduct(models.Model):
+    """ Image Product Model
+        ~~~~~~~~~~~~~~~~~~~
+
+    Store all product images.
+    """
+    image_path = models.FileField()
+    product = models.ForeignKey(Product, related_name='product_images')
