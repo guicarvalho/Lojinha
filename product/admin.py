@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from product.models import Product, Category, ProductDetail, ProductReview, RelatedProduct
+from product.models import Product, Category, ProductDetail, ProductReview, RelatedProduct, ProductImage
 
 
 @admin.register(Product)
@@ -27,4 +27,9 @@ class ProductReviewAdmin(admin.ModelAdmin):
 
 @admin.register(RelatedProduct)
 class RelatedProductAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ProductImage)
+class ProductImageAdmin(admin.ModelAdmin):
     pass

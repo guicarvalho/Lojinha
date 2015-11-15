@@ -128,7 +128,7 @@ class RelatedProduct(models.Model):
         verbose_name_plural = 'Produtos Relacionados'
 
     def __str__(self):
-        return '{} : {}'.format(self.product_one.name, self.product_two.name)
+        return '{} : {}'.format(self.product_origin.short_description, self.related_product.short_description)
 
 
 class ProductImage(models.Model):
@@ -139,6 +139,9 @@ class ProductImage(models.Model):
     """
     image_path = models.FileField()
     product = models.ForeignKey(Product, related_name='product_images')
+
+    def __str__(self):
+        return '{}: {} <{}>'.format(self.id, self.product.short_description, self.image_path.url)
 
 
 class ProductTag(models.Model):

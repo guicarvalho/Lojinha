@@ -1,16 +1,18 @@
 # coding: utf-8
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as login_
+from django.contrib.auth import authenticate, logout as logout_, login as login_
 from django.http import JsonResponse
 from django.shortcuts import redirect
-from django.utils.translation import ugettext_lazy as _
 
 from core.forms import LoginForm
 
 
 def login(request):
+    # import pdb; pdb.set_trace()
     form = LoginForm(request.POST)
+
+    message = {}
 
     if request.method == 'POST':
         if form.is_valid():
@@ -23,14 +25,24 @@ def login(request):
                 # Verifica se o usuário está ativo
                 if usuario.is_active:
                     login_(request, usuario)
-                    messages.success(request, 'Login realizado com sucesso !')
+                    message = {'message': 'Login realizado com sucesso !', 'level': 'success'}
                 else:
-                    messages.add_message(request, messages.ERROR,
-                                         _('Seu usuário foi desativo !'), extra_tags='danger')
+                    message = {'message': 'Seu usuário foi desativo !', 'level': 'danger'}
             else:
-                messages.add_message(request, messages.ERROR,
-                                     _('Seu usuário ou senha estão incorretos !'), extra_tags='danger')
+                message = {'message': 'Seu usuário ou senha estão incorretos !', 'level': 'danger'}
         else:
-            return JsonResponse(form.errors)
+            response = JsonResponse(form.errors)
+            response.status_code = 500
+            return response
 
-        return redirect('home_page')
+        # import pdb; pdb.set_trace()
+
+        return JsonResponse(message)
+
+
+def logout(request):
+    logout_(request)
+
+    messages.info(request, 'Logout realizado !')
+
+    return redirect('home_page')

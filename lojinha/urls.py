@@ -7,7 +7,7 @@ from product.views import (ProductCreateView, ProductDetailView, ProductListView
                            )
 from shopping_cart.views import Cart
 from homepage.views import HomePageView
-from core.views import login
+from core.views import login, logout
 
 
 urlpatterns = [
@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^$', HomePageView.as_view(), name='home_page'),
 
     url(r'login/$', login, name='login'),
+    url(r'logout/$', logout, name='logout'),
 
     # Products
     url(r'products/$', ProductListView.as_view(), name='products-list'),
