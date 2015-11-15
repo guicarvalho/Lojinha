@@ -4,6 +4,11 @@ from django.db import models
 
 
 class Promotion(models.Model):
+    """ Promotion
+        ~~~~~~~~~
+
+    Store generics informations of promotions.
+    """
     name = models.CharField(max_length=50)
     begin_date = models.DateField()
     end_date = models.DateField()
@@ -15,6 +20,11 @@ class Promotion(models.Model):
 
 
 class PromotionProduct(models.Model):
+    """ PromotionProduct
+        ~~~~~~~~~~~~~~~~
+
+    Store all product promotion.
+    """
     product = models.ForeignKey('product.Product')
     promotion = models.ForeignKey('Promotion')
 

@@ -1,0 +1,17 @@
+.asterisc_error {
+    color: #F00000;
+}
+
+/* Label exibida nos campos onde o preenchimento está incorreto */
+.error_link {
+    color: #F00000;
+    font-weight: bolder;
+    font-size: 13px;
+}
+
+.error_link > ul {
+    padding: 0;
+    margin: 5px 0 0 0;
+    text-decoration: none;
+    list-style: none;
+}

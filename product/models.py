@@ -7,8 +7,8 @@ from django.db import models
 
 
 class Product(models.Model):
-    """ Product Model
-        ~~~~~~~~~~~~~
+    """ Product
+        ~~~~~~~
 
     Product is a model of products of e-commerce. A product has category
     and your attributes.
@@ -39,8 +39,8 @@ class Product(models.Model):
 
 
 class Category(models.Model):
-    """ Category Model
-        ~~~~~~~~~~~~~~
+    """ Category
+        ~~~~~~~~
 
     Category is a model of category of product. The categories are ordering by name.
     """
@@ -58,8 +58,8 @@ class Category(models.Model):
 
 
 class ProductDetail(models.Model):
-    """ Product Detail Model
-        ~~~~~~~~~~~~~~~~~~~~
+    """ ProductDetail
+        ~~~~~~~~~~~~~
 
     Product Detail are related with Product 1:N. All details
     of products when not are presents in product model are
@@ -85,8 +85,8 @@ class ProductDetail(models.Model):
 
 
 class ProductReview(models.Model):
-    """ Product Review Model
-        ~~~~~~~~~~~~~~~~~~~~
+    """ ProductReview
+        ~~~~~~~~~~~~~
 
     Store all products reviews, by default reviews dont appear in
     web site without permission of system administrator.
@@ -115,8 +115,8 @@ class ProductReview(models.Model):
 
 
 class RelatedProduct(models.Model):
-    """ Related Product Model
-        ~~~~~~~~~~~~~~~~~~~~~
+    """ RelatedProduct
+        ~~~~~~~~~~~~~~
 
     Store related products.
     """
@@ -131,11 +131,21 @@ class RelatedProduct(models.Model):
         return '{} : {}'.format(self.product_one.name, self.product_two.name)
 
 
-class ImageProduct(models.Model):
-    """ Image Product Model
-        ~~~~~~~~~~~~~~~~~~~
+class ProductImage(models.Model):
+    """ ProductImage
+        ~~~~~~~~~~~~
 
     Store all product images.
     """
     image_path = models.FileField()
     product = models.ForeignKey(Product, related_name='product_images')
+
+
+class ProductTag(models.Model):
+    """ ProductTag
+        ~~~~~~~~~~
+
+    Store all product tags.
+    """
+    name = models.CharField(max_length=40)
+    products = models.ManyToManyField(Product)

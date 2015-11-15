@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Cadastrar Cliente {% endblock %}
+
+{% block content %}
+  <!--********** FORMULÁRIO DE CADASTRO DE USUÁRIO **********-->
+  <form action="{% url 'client-add' %}" method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+    <fieldset>
+      <legend>Identificação do usuário</legend>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nome">
+            {{ client_form.first_name.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-4">
+            {{ client_form.first_name }}
+            <span class="error_link">{{ client_form.first_name.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="sobrenome">
+            {{ client_form.last_name.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-4">
+            {{ client_form.last_name }}
+            <span class="error_link">{{ client_form.last_name.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="apelido">{{ client_form.nickname.label }}</label>
+          <div class="col-md-4">
+            {{ client_form.nickname }}
+            <span class="error_link">{{ client_form.nickname.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="cnpj_cpf">
+            {{ client_form.cpf_cnpj.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-3">
+              {{ client_form.cpf_cnpj }}
+              <span class="error_link">{{ client_form.cpf_cnpj.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">
+            {{ client_form.email.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-4">
+              {{ client_form.email }}
+              <span class="error_link">{{ client_form.email.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="data_nascimento">
+            {{ client_form.birthday.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-2">
+              {{ client_form.birthday }}
+              <span class="error_link">{{ client_form.birthday.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="sexo">
+            {{ client_form.sex.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-4">
+            {{ client_form.sex }}
+            <span class="error_link">{{ client_form.sex.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="telefone">
+            {{ client_form.phone.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-2">
+              {{ client_form.phone }}
+              <span class="error_link">{{ client_form.phone.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="celular">
+              {{ client_form.cell_phone.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-2">
+              {{ client_form.cell_phone }}
+              <span class="error_link">{{ client_form.cell_phone.errors }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="foto">
+              {{ client_form.photo.label }} <span class="asterisc_error">*</span>
+          </label>
+          <div class="col-md-4">
+            {{ client_form.photo }}
+            <span class="error_link">{{ client_form.photo.errors }}</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Endereço</legend>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="cep">
+                {{ address_form.zip_code.label }} <span class="asterisc_error">*</span>
+            </label>
+            <div class="col-md-2">
+                {{ address_form.zip_code }}
+                <span class="error_link">{{ address_form.zip_code.errors }}</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="logradouro">
+                {{ address_form.street.label }} <span class="asterisc_error">*</span>
+            </label>
+            <div class="col-md-6">
+                {{ address_form.street }}
+                <span class="error_link">{{ address_form.street.errors }}</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="numero">
+              {{ address_form.number.label }} <span class="asterisc_error">*</span>
+            </label>
+            <div class="col-md-3">
+              {{ address_form.number }}
+              <span class="error_link">{{ address_form.number.errors }}</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="complemento">{{ address_form.complement.label }} </label>
+            <div class="col-md-4">
+              {{ address_form.complement }}
+              <span class="error_link">{{ address_form.complement.errors }}</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="cidade">
+              {{ address_form.city.label }} <span class="asterisc_error">*</span>
+            </label>
+            <div class="col-md-4">
+                {{ address_form.city }}
+                <span class="error_link">{{ address_form.city.errors }}</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="bairro">
+              {{ address_form.neigthboor.label }} <span class="asterisc_error">*</span>
+            </label>
+            <div class="col-md-4">
+              {{ address_form.neigthboor }}
+              <span class="error_link">{{ address_form.neigthboor.errors }}</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="estado">
+              {{ address_form.state.label }} <span class="asterisc_error">*</span>
+            </label>
+            <div class="col-md-3">
+              {{ address_form.state }}
+              <span class="error_link">{{ address_form.state.errors }}</span>
+            </div>
+          </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Senha</legend>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="senha">
+              {{ client_form.password.label }} <span class="asterisc_error">*</span>
+            </label>
+            <div class="col-md-2">
+              {{ client_form.password }}
+              <span class="error_link">{{ client_form.password.errors }}</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="confirmar_senha">
+              {{ client_form.confirm_password.label }} <span class="asterisc_error">*</span>
+            </label>
+            <div class="col-md-2">
+              {{ client_form.confirm_password }}
+              <span class="error_link">{{ client_form.confirm_password.errors }}</span>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary pull-right" value="Cadastrar-se" />
+      </fieldset>
+
+    </form>
+
+{% endblock %}

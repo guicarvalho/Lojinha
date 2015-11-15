@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from client.views import create_client
 from product.views import (ProductCreateView, ProductDetailView, ProductListView,
                            ProductCategoryListView
                            )
@@ -9,7 +10,7 @@ from homepage.views import HomePageView
 
 
 urlpatterns = [
-    url(r'^grappelli/', include('grappelli.urls')),  # grappelli URLS
+    # url(r'^grappelli/', include('grappelli.urls')),  # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', HomePageView.as_view(), name='home_page'),
@@ -24,4 +25,7 @@ urlpatterns = [
 
     # Car
     url(r'car/add/', Cart.as_view(), name='cart-add'),
+
+    # Client
+    url(r'client/add/', create_client, name='client-add'),
 ]
