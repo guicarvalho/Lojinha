@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 
 from client.forms import AddressForm, ClientForm
+from core.forms import LoginForm
 
 
 def create_client(request):
@@ -32,12 +33,13 @@ def create_client(request):
                 return redirect('home_page')
 
             messages.add_message(request, messages.ERROR,
-                                 'Já existe usuário cadastrado com esse e-mail !', extra_tags='danger')
+                                 _('Já existe usuário cadastrado com esse e-mail !'), extra_tags='danger')
     else:
         client_form = ClientForm()
         address_form = AddressForm()
 
     return render(request, 'client/client_form.html', {
         'client_form': client_form,
-        'address_form': address_form
+        'address_form': address_form,
+        'login_form': LoginForm()
     })
