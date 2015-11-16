@@ -48,7 +48,19 @@ class ProductCategoryListView(ListView):
 
         # get category name
         category_name = self.kwargs['name']
-        object_list = Product.objects.filter(category__name__contains=category_name)
+        product_list = Product.objects.filter(category__name__contains=category_name)
+
+        # get tags
+        tag_list = ProductTag.objects.filter(name=category_name)
+
+        object_list = []
+
+        for item in tag_list:
+            for p in item.products.all():
+                object_list.append(p)
+
+        for item in product_list:
+            object_list.append(item)
 
         context['object_list'] = object_list
         context['category'] = category_name

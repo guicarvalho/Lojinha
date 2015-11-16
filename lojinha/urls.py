@@ -7,7 +7,7 @@ from client.views import create_client
 from product.views import (ProductCreateView, ProductDetailView, ProductListView,
                            ProductCategoryListView
                            )
-from shopping_cart.views import Cart
+from shopping_cart.views import add_product, list_cart_itens
 from homepage.views import HomePageView
 from core.views import login, logout
 
@@ -29,8 +29,9 @@ urlpatterns = [
     # Category
     url(r'category/(?P<name>[-\w]+)/$', ProductCategoryListView.as_view(), name='category-list'),
 
-    # Car
-    url(r'car/add/', Cart.as_view(), name='cart-add'),
+    # Cart
+    url(r'cart/add/(?P<slug>[-_\w]+)/$', add_product, name='cart-add'),
+    url(r'cart/list/$', list_cart_itens, name='cart-list'),
 
     # Client
     url(r'client/add/', create_client, name='client-add'),

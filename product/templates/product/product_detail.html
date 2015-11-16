@@ -39,7 +39,7 @@
 	      <option>G</option>
 	    </select>
 	  </div> -->
-	  <a id="btn-add-to-cart" type="button" class="btn btn-success btn-lg btn-block">
+	  <a href="{% url 'cart-add' object.slug %}" id="btn-add-to-cart" type="button" class="btn btn-success btn-lg btn-block">
 		  <span class="glyphicon glyphicon-shopping-cart"></span> Adicionar ao Carrinho
 	  </a>
 	  <a type="button" class="btn btn-default btn-lg btn-block">
@@ -114,17 +114,5 @@
   {% endfor %}
 
 </div>
-
-{% endblock %}
-
-{% block extra_js %}
-
-<script>
-    $('#btn-add-to-cart').on('click', function() {
-      $.post('car/add/', {nome:'Guilherme'}, function(data, status){
-        alert(data);
-      });
-    });
-</script>
 
 {% endblock %}

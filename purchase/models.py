@@ -3,7 +3,7 @@
 from django.db import models
 
 from client.models import Client
-from shopping_cart.models import Car
+from shopping_cart.models import Cart
 
 
 class PaymentType(models.Model):
@@ -22,7 +22,7 @@ class Purchase(models.Model):
 
     Store information for a purchase.
     """
-    shopping_cart = models.ForeignKey(Car)
+    shopping_cart = models.ForeignKey(Cart)
     purchase_number = models.CharField(max_length=256)
     payment_type = models.ForeignKey(PaymentType)
     client = models.ForeignKey(Client, related_name='purchases')

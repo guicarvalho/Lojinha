@@ -11,7 +11,7 @@
     {% for product in object_list %}
        <div class="col-md-3 col-sm-6 hero-feature">
           <div class="thumbnail">
-              <img alt="" src="{{ product.product_images.first.image_path.url }}">
+              <img alt="" src="{{ product.product_images.first.image_path.url }}" width="200" height="170">
               <div class="caption">
                   <h3>{{ product.short_description|capfirst }}</h3>
                   <p>{{ product.long_description|capfirst }}</p>

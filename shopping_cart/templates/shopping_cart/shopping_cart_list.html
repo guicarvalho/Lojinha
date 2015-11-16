@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Carrinho de Compras {% endblock %}
+
+{% block content %}
+    <h1>Carrinho de Compra</h1>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
+        </thead>
+        <tbody>
+        {% for item in cart.cart_itens.all %}
+        <tr>
+            <td>{{ item.product.short_description }}</td>
+            <td>{{ item.product.short_description }}</td>
+            <td>{{ item.amount }}</td>
+            <td>{{ item.value }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-md-3 pull-right">
+            <label for="cep">Calcule o valor do frete:</label>
+            <div class="input-group">
+              <input type="text" class="form-control" aria-label="...">
+              <div class="input-group-btn">
+                <a class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></a>
+              </div>
+            </div>
+            <!-- <div class="col-md-5">
+
+                <input id="cep" type="text" name="cep" class="form-control input-md">
+            </div>
+
+            <div class="col-md-1">
+                <label>&nbsp;</label>
+
+            </div> -->
+        </div>
+    </div>
+
+    <div style="margin-bottom: 20px;"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="#" type="button" class="btn btn-lg btn-success pull-right">
+                <span class="glyphicon glyphicon-credit-card">&nbsp;</span>Finalizar Compra</a>
+        </div>
+    </div>
+{% endblock %}
