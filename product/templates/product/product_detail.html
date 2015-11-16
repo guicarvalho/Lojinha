@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+
+{% load staticfiles %}
+
 {% load product_tags %}
+
 {% load humanize %}
 
 {% block titulo %} Página inicial {% endblock %}
@@ -7,16 +11,13 @@
 {% block content %}
 <div class="row">
 	<div class="col-md-6">
-		<img src="http://placehold.it/400x350" alt="">
+		<img src="{{ object.product_images.first.image_path.url }}" alt="{{ recent_products.0.short_description }}" width="419" height="320">
     <div class="row">
     	<div class="col-md-10">
 		    <div style="padding-top: 5px;">
-		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-		      <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
+			  {% for image in object.product_images.all %}
+		      	<img src="{{ image.image_path.url }}" alt="{{ image.product.short_description }}" style="padding-bottom: 5px;" width="70" height="50">
+			  {% endfor %}
 		    </div>
 	    </div>
    	</div>
@@ -29,7 +30,7 @@
       <h2>Por: R$ {{ object.sale_value|floatformat:2|intcomma }}</h2>
     </div>
     <hr>
-    <h6>TAMANHO</h6>
+    <!-- <h6>TAMANHO</h6>
     <div class="form-group">
 	    <select class="form-control">
 	      <option>Selecione um tamanho</option>
@@ -37,9 +38,13 @@
 	      <option>M</option>
 	      <option>G</option>
 	    </select>
-	  </div>
-	  <button id="btn-add-to-cart" type="button" class="btn btn-success btn-lg btn-block">Adicionar ao Carrinho</button>
-	  <button type="button" class="btn btn-default btn-lg btn-block">Adicionar à Lista de Desejos</button>
+	  </div> -->
+	  <a id="btn-add-to-cart" type="button" class="btn btn-success btn-lg btn-block">
+		  <span class="glyphicon glyphicon-shopping-cart"></span> Adicionar ao Carrinho
+	  </a>
+	  <a type="button" class="btn btn-default btn-lg btn-block">
+		  <span class="glyphicon glyphicon-heart"></span> Adicionar à Lista de Desejos
+	  </a>
 
 	  <div class="ratings padding_top_50">
       <p class="pull-right">{{ product_reviews|length }} Opiniões</p>
@@ -59,28 +64,29 @@
 	<div class="col-md-6">
 		<h3>Detalhes do produto</h3>
 		<p>{{ object.long_description }}</p>
-		
+
 		<h3>Informações</h3>
-    <table class="table">
-    {% for detail in product_details %}
-      <tr>
-        <td>{{ detail.name }}</td>
-        <td>{{ detail.description }}</td>
-    {% endfor %}
-    </table>
+		<table class="table">
+	    {% for detail in product_details %}
+	      <tr>
+	        <td>{{ detail.name }}</td>
+	        <td>{{ detail.description }}</td>
+	    {% endfor %}
+	    </table>
 
 		<h3>Veja mais</h3>
-		<span class="label label-default"><a href="#" style="text-decoration: none; color: #FFF;">Bolsa</a></span>
-		<span class="label label-default"><a href="#" style="text-decoration: none; color: #FFF;">Bolsa de Pano</a></span>
+		{% for tag in object.tags %}
+			<span class="label label-default"><a href="{% url 'category-list' tag.name %}" style="text-decoration: none; color: #FFF;">{{ tag.name }}</a></span>
+		{% endfor %}
 	</div>
 
 	<div class="col-md-6">
 		<h3>Recomendados para você</h3>
-    {% for product in related_products %}
-		  <a href="{% url 'products-detail' product.related_product.slug %}">
-        <img src="http://placehold.it/180x250" alt="{{ product.related_product.short_description }}" style="padding-bottom: 5px;">
-      </a>
-    {% endfor %}
+    	{% for product in related_products %}
+			<a href="{% url 'products-detail' product.related_product.slug %}">
+        		<img src="{{ product.related_product.product_images.first.image_path.url }}" alt="{{ product.related_product.short_description }}" style="padding-bottom: 5px;" width="180" height="250">
+      		</a>
+    	{% endfor %}
 	</div>
 </div>
 
@@ -122,4 +128,3 @@
 </script>
 
 {% endblock %}
-

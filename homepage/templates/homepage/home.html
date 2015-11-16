@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block titulo %} Página inicial {% endblock %}
 
 {% block content %}
@@ -13,7 +15,8 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
-              <img src="http://placehold.it/400x350" alt="">
+
+              <img src="{{ recent_products.0.product_images.first.image_path.url }}" alt="{{ recent_products.0.short_description }}" width="419" height="320">
               <div style="padding-top: 5px;">
                 <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
                 <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
@@ -80,7 +83,7 @@
     {% for product in recent_products %}
        <div class="col-md-3 col-sm-6 hero-feature">
           <div class="thumbnail">
-              <img alt="" src="http://placehold.it/800x500">
+              <img alt="{{ product.short_description }}" src="{{ product.product_images.first.image_path.url }}" width="200" height="170">
               <div class="caption">
                   <h3>{{ product.short_description|capfirst }}</h3>
                   <p>{{ product.long_description|capfirst }}</p>

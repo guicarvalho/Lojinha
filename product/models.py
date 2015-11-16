@@ -137,7 +137,7 @@ class ProductImage(models.Model):
 
     Store all product images.
     """
-    image_path = models.FileField()
+    image_path = models.ImageField(upload_to='products')
     product = models.ForeignKey(Product, related_name='product_images')
 
     def __str__(self):
@@ -152,3 +152,6 @@ class ProductTag(models.Model):
     """
     name = models.CharField(max_length=40)
     products = models.ManyToManyField(Product)
+
+    def __str__(self):
+        return '{}: {}'.format(self.id, self.name)

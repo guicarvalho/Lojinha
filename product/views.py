@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.utils.decorators import method_decorator
 
-from product.models import Product
+from product.models import Product, ProductTag
 
 
 class ProductCreateView(CreateView):
@@ -26,9 +26,13 @@ class ProductDetailView(DetailView):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         product = context.get('object')
 
+        # get product tags
+        product.tags = ProductTag.objects.filter(products__in=[product])
+
         context['product_details'] = product.product_details.all()
         context['product_reviews'] = product.productreview_set.all()
         context['related_products'] = product.origin.all()
+
         return context
 
 
