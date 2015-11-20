@@ -1,12 +1,28 @@
 # coding: utf-8
 
 from django.contrib.auth.decorators import login_required
+from django.forms.models import model_to_dict
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.utils.decorators import method_decorator
 
 from product.models import Product, ProductTag
+
+
+def product_detail_json(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+
+    product_dict = model_to_dict(product)
+    product_dict['main_image'] = product.product_images.first().image_path.url
+    product_dict['list_images'] = [img.image_path.url for img in product.product_images.all()]
+    product_dict['short_description'] = product.short_description.title()
+
+    print (product_dict['list_images'])
+
+    return JsonResponse(product_dict)
 
 
 class ProductCreateView(CreateView):

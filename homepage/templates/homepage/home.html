@@ -16,59 +16,24 @@
           <div class="row">
             <div class="col-md-6">
 
-              <img src="{{ recent_products.0.product_images.first.image_path.url }}" alt="{{ recent_products.0.short_description }}" width="419" height="320">
-              <div style="padding-top: 5px;">
-                <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-                <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-                <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-                <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-                <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
-                <img src="http://placehold.it/97x50" alt="" style="padding-bottom: 5px;">
+              <img id="modal-main-image" src="" alt="" width="419" height="320">
+              <div id="modal-mini-img" style="padding-top: 5px;">
               </div>
             </div>
             <div class="col-md-6">
-              <h3 class="modal-title">Pulseira macrâme</h3>
-              <p>Pulsiera macrâme cor preta, em vários tamanhos.</p>
-              <p>De: <span style="text-decoration: line-through">R$ 22,50</span></p>
-              <p>Por: R$ 17,00</p>
+              <h3 id="product-modal-title" class="modal-title"></h3>
+              <p id="product-modal-description"></p>
+              <p>De: R$<span id="product-modal-price" style="text-decoration: line-through"></span></p>
+              <p>Por: R$ <span id="product-modal-promotion-price"></span></p>
               <hr>
-              <!-- <div class="form-group">
-                <select class="form-control">
-                  <option>Selecione um tamanho</option>
-                  <option>P</option>
-                  <option>M</option>
-                  <option>G</option>
-                </select>
-              </div> -->
+              
               <button type="button" class="btn btn-success btn-block">Adicionar ao Carrinho</button>
               <button type="button" class="btn btn-default btn-block">Adicionar à Lista de Desejos</button>
 
-              <h5 style="padding-top:30px; font-weight: bold">Mais Cores</h5>
-              <div style="
-                height: 20px;
-                width: 20px;
-                background-color: pink;
-                border-radius: 2px;
-                float: left;
-                margin-right: 5px;"></div>
-              <div style="
-                height: 20px;
-                width: 20px;
-                background-color: red;
-                border-radius: 2px;
-                float: left;
-                margin-right: 5px;"></div>
-              <div style="
-                height: 20px;
-                width: 20px;
-                background-color: black;
-                border-radius: 2px;
-                float: left;
-                margin-right: 5px;"></div>
+              <div class="text-center" style="margin-top: 80px;">
+                <a id="product-modal-link-detail" href="" style="color: black; font-weight: bold; font-size: 11px; text-decoration: underline;">Visualizar todos os detalhes do produto</a>
+              </div>
 
-                <div class="text-center" style="margin-top: 80px;">
-                  <a href="#" style="color: black; font-weight: bold; font-size: 11px; text-decoration: underline;">Visualizar todos os detalhes do produto</a>
-                </div>
             </div>
           </div>
         </div>
@@ -89,7 +54,7 @@
                   <p>{{ product.long_description|capfirst }}</p>
                   <p>R$ {{ product.sale_value }}</p>
                   <p>
-                      <a class="btn btn-primary open-modal" href="#">Comprar Agora!</a> <a class="btn btn-default" href="{% url 'products-detail' product.slug %}">Detalhes</a>
+                    <a class="btn btn-primary open-modal" href="#" onclick="montarModalProduto('{{ product.slug }}')">Comprar Agora!</a> <a class="btn btn-default" href="{% url 'products-detail' product.slug %}">Detalhes</a>
                   </p>
               </div>
           </div>
@@ -99,12 +64,5 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script>
-    $('.open-modal').click(function(){
-      $('#myModal').modal('show');
-    });
-    $("#myModal").on('hidden.bs.modal', function(){
-      // TODO: implements exit action
-    });
-  </script>
+  <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}

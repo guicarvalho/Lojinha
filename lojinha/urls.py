@@ -5,7 +5,7 @@ from django.contrib import admin
 
 from client.views import create_client
 from product.views import (ProductCreateView, ProductDetailView, ProductListView,
-                           ProductCategoryListView
+                           ProductCategoryListView, product_detail_json
                            )
 from shopping_cart.views import add_product, list_cart_itens
 from homepage.views import HomePageView
@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'products/$', ProductListView.as_view(), name='products-list'),
     url(r'products/add/$', ProductCreateView.as_view(), name='products-add'),
     url(r'products/(?P<slug>[-_\w]+)/$', ProductDetailView.as_view(), name='products-detail'),
+    url(r'products/json/(?P<slug>[-_\w]+)/$', product_detail_json, name='products-detail-json'),
 
     # Category
     url(r'category/(?P<name>[-\w]+)/$', ProductCategoryListView.as_view(), name='category-list'),
