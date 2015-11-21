@@ -10,6 +10,7 @@ from product.views import (ProductCreateView, ProductDetailView, ProductListView
 from shopping_cart.views import add_product, list_cart_itens
 from homepage.views import HomePageView
 from core.views import login, logout
+from wishlist.views import WishListListView, WishListDeleteView, WishListItemDeleteView, add_item_wishlist
 
 
 urlpatterns = [
@@ -36,4 +37,10 @@ urlpatterns = [
 
     # Client
     url(r'client/add/', create_client, name='client-add'),
+
+    url(r'whishlist/add/(?P<slug>[-\w]+)/$', add_item_wishlist, name='whishlist-add'),
+    url(r'whishlist/$', WishListListView.as_view(), name='whishlist-list'),
+    url(r'whishlist/remove/(?P<pk>\d+)/', WishListItemDeleteView.as_view(), name='wishlistitem-delete'),
+    url(r'whishlist/clean/(?P<pk>\d+)/', WishListDeleteView.as_view(), name='wishlist-delete'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

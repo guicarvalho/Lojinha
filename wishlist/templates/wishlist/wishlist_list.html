@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Lista de Desejos {% endblock %}
+
+{% block content %}
+    <h1>
+        Lista de Desejos
+        <small><br> Oi {{ user.first_name }}, aqui estão os produtos que você separou =D </small>
+    </h1>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Ações</th>
+        </thead>
+        <tbody>
+        {% for item in wishlist.0.wishlist_items.all %}
+        <tr>
+            <td>{{ item.product.short_description|title }}</td>
+            <td>{{ item.product.long_description }}</td>
+            <td>R$ {{ item.product.sale_value }}</td>
+            <td>
+                <a href="{% url 'products-detail' item.product.slug %}" type="button" class="btn btn-sm btn-default" title="Comprar Agora !">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                </a>
+                
+                <a href="{% url 'wishlistitem-delete' item.id %}" type="button" class="btn btn-sm btn-danger" title="Remover">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <div id="containerBotaoLimparLista" class="row">
+        <div class="col-md-12">
+            <a href="{% url 'wishlist-delete' wishlist.0.id %}" type="button" class="btn btn-lg btn-default pull-right">
+                <span class="glyphicon glyphicon-trash">&nbsp;</span>Limpar Lista de Desejos</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        removerBotaoLimpar({{wishlist.0.wishlist_items.count}});
+
+        function removerBotaoLimpar(tam_lista) {
+            if (tam_lista == 0) {
+                $('#containerBotaoLimparLista').remove();
+            }
+        }
+
+    </script>
+{% endblock %}

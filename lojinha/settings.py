@@ -91,3 +91,5 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+LOGIN_URL = '/'

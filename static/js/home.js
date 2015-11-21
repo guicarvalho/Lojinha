@@ -31,18 +31,6 @@ function montarModalProduto(slug) {
                     $('#modal-mini-img').append('<img src="'+ data.list_images[img] +'" alt="" width="60" height="50" style="padding-bottom: 5px;">');
                 }
 
-                // console.log(data.slug);
-                // console.log(data.short_description);
-                // console.log(data.long_description);
-                // console.log(data.min_stock);
-                // console.log(data.max_stock);
-                // console.log(data.sale_value);
-                // console.log(data.production_value);
-                // console.log(data.color);
-                // console.log(data.publishing_date);
-                // console.log(data.sku);
-                // console.log(data.category);
-
                 $('#myModal').modal('show');
             },
     });

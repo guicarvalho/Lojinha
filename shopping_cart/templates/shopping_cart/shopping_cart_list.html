@@ -16,8 +16,8 @@
         <tbody>
         {% for item in cart.cart_itens.all %}
         <tr>
-            <td>{{ item.product.short_description }}</td>
-            <td>{{ item.product.short_description }}</td>
+            <td>{{ item.product.short_description|title }}</td>
+            <td>{{ item.product.long_description }}</td>
             <td>{{ item.amount }}</td>
             <td>{{ item.value }}</td>
         </tr>
