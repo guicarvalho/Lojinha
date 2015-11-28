@@ -4,3 +4,4 @@ ipdb==0.8
 ipython==3.1.0
 Pillow==2.8.1
 wheel==0.24.0
+correiospy
