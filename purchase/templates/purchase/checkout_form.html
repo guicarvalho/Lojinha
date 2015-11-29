@@ -127,7 +127,7 @@
                         </div>
                         <div class="col-md-9">
                             <h4 class="list-group-item-heading">{{ item.product.short_description|title }}</h4>
-                            <p class="list-group-item-text">Alguma descrição aqui</p>
+                            <p class="list-group-item-text">{{ item.product.long_description|title }} <b>x {{ item.amount }}</b> </p>
                         </div>
                         <div style="clear:both"></div>
                     </div>
@@ -135,7 +135,7 @@
 
                 <div class="list-group-item active">
                     <h4 class="list-group-item-heading">
-                        Aguardando Pagamento <span style="float:right">R$ 99,99</span>
+                        Aguardando Pagamento <span style="float:right">R$ {{ cart.total_value }}</span>
                     </h4>
                 </div>
             </div>

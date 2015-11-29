@@ -57,3 +57,7 @@ docs/_build/
 target/
 
 # images
+
+
+*.sqlite3
+*.*sqlite*

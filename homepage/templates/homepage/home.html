@@ -103,8 +103,8 @@
                   <p>{{ product.long_description|capfirst }}</p>
                   <h3>R$ {{ product.sale_value }}</h3>
                   <p>
-                    <a class="btn btn-primary open-modal" href="#" onclick="montarModalProduto('{{ product.slug }}')">Comprar Agora!</a> 
-                    <a class="btn btn-primary" href="{% url 'products-detail' product.slug %}">Detalhes</a>
+                    {# <a class="btn btn-primary open-modal" href="#" onclick="montarModalProduto('{{ product.slug }}')">Comprar Agora!</a>  #}
+                    <a class="btn btn-primary btn-block" href="{% url 'products-detail' product.slug %}">Comprar</a>
                   </p>
               </div>
           </div>

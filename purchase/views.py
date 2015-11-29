@@ -15,7 +15,7 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 
         username = self.request.user.email
 
-        context['client'] = Client.objects.get(email=username)
+        context['client'] = Client.objects.filter(email=username).first()
         context['cart'] = self.request.session.get('cart', Cart())
 
         return context
