@@ -2,11 +2,12 @@
   padding: 40px;
   margin: 50px 0 0 0;
   text-align: center;
-  background-color: #7d543d;
+  background-color: #e6bb8b;
 }
 
 #footer li a {
-  color:#e6bb8b;
+  color: #7d542b;
+  font-weight: bolder;
 }
 
 .removeBullet{
@@ -27,60 +28,65 @@
 }
 
 .navbar-default {
-  background-color: #7d543d;
-  border-color: #7d543d;
+  background-color:#e6bb8b;
+  border-color: #e6bb8b;
 }
 
 .navbar-default .navbar-nav li a {
-  color:#e6bb8b;
+  color:  #7d542b;
   font-weight: bolder;
-  font-family: Lato;
 }
 
 .btn {
   background-image: none;
 }
 
-.btn-primary {
-  color: #91683d;
+.btn {
+  color:  #7d542b;
   background-color:#fff;
-  border-color: #91683d;
+  border-color:  #7d542b;
+
 }
 
-.btn-primary:hover{
-  color:  #91683d;
-  background-color:  #e8b988;
-  border-color:  #91683d;
+.btn:hover{
+  color:  #7d542b;
+  background-color:#fff;
+  border-color:  #7d542b;
+}
+
+.btn:active{
+  color:  #7d542b;
+  background-color:#fff;
+  border-color:  #7d542b;
 }
 
 .btn-block{
-   color: #91683d;
+  color: #91683d;
   background-color:#fff;
   border-color: #91683d;
 }
 
 .btn-block:hover{
   color:  #91683d;
-  background-color:  #e8b988;
+  background-color: #e8b988;
   border-color:  #91683d;
 }
 
-
-.btn-default {
-  color: #91683d;
-  background-color:#fff;
-  border-color: #91683d;
-}
-
-.btn-default:hover{
+.btn-block:active{
   color:  #91683d;
-  background-color:  #e8b988;
+  background-color: #e8b988;
   border-color:  #91683d;
 }
 
-h3 {
-  color:#91683d;
+h3{
+  color:#7d543d;
   text-align: center;
+  font-weight: bolder;
+}
+
+h4{
+  color:#7d543d;
+  font-weight: bolder;
 }
 
 hr{
@@ -94,23 +100,52 @@ hr{
 }
 
 .menu{
-  padding-left: 110px;
+  padding-left: 150px;
 }
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
-  color:#e6bb8b;
-  background-color: #63412E;
+  color: #7d542b;
+  background-color: #e6bb8b;
 }
 
 .dropdown-menu {
-  background-color: #7d543d;
+  background-color:#e6bb8b;
 }
 
+/*cor do menu dropdown*/
 .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
-  background-color: #63412E; 
+  background-color:#E6B18B
 }
 
-/*Escopo da página*/
-.escopo{
-  margin-top: 55px;
+/*cor das tags label do site*/
+label{
+  color: #7d542b;
+}
+
+/*cor do botão da modal de login*/
+.login{
+  color: #7d542b;
+  background-color:#fff;
+  border-color: #7d542b;
+}
+
+/*cor do botão da modal de login quando for clicado*/
+.login:hover{
+   color:#7d542b;
+}
+
+/*cor dos links da modal de login*/
+.modal-body a{
+  color:#7d542b;
+}
+
+/*Muda a cor do nome da empresa no rodapé*/
+.nome{
+  color:#e6bb8b;
+
+}
+
+/*tags da tela de detalhes de produtos*/
+.label-default{
+  background-color: #7d542b;
 }

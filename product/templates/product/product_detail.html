@@ -36,7 +36,7 @@
   
 	<div class="col-md-6">
 		<h3 class="text-center">{{ object.short_description|title }}</h3>
-    <p class="text-center">{{ object.long_description|capfirst }}</p>
+    <p>{{ object.long_description|capfirst }}</p>
     <div class="well">
   		<h5><span style="color: #F32; text-decoration: line-through">De: R$ {{ object.sale_value|add:5|floatformat:2|intcomma }}</span></h5>
       <h2>Por: R$ {{ object.sale_value|floatformat:2|intcomma }}</h2>
@@ -77,7 +77,6 @@
 	    {% endfor %}
 	    </table>
 
-		<h3>Veja mais</h3>
 		{% for tag in object.tags %}
 			<span class="label label-default"><a href="{% url 'category-list' tag.name %}" style="text-decoration: none; color: #FFF;">{{ tag.name }}</a></span>
 		{% endfor %}

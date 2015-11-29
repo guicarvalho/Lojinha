@@ -17,7 +17,8 @@
                   <p>{{ product.long_description|capfirst }}</p>
                   <p>R$ {{ product.sale_value }}</p>
                   <p>
-                      <a class="btn btn-primary open-modal" href="#">Comprar Agora!</a> <a class="btn btn-default" href="{% url 'products-detail' product.slug %}">Detalhes</a>
+                      <a class="btn btn-primary open-modal" href="#">Comprar Agora!</a> 
+                      <a class="btn btn-primary" href="{% url 'products-detail' product.slug %}">Detalhes</a>
                   </p>
               </div>
           </div>

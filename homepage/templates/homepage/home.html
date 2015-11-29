@@ -26,15 +26,15 @@
           </ol>
           <div class="carousel-inner">
             <div class="item">
-              <img alt="Carousel Bootstrap First" src="http://lorempixel.com/1200/500/cats/10" />
+              <img alt="Carousel Bootstrap First" src="{% static 'images/banner1.jpg'%}" />
             </div><!---fim div item-->
 
             <div class="item active">
-              <img alt="Carousel Bootstrap Second" src="http://lorempixel.com/1200/500/cats/9" />
+              <img alt="Carousel Bootstrap Second" src="{% static 'images/banner2.jpg'%}" />
             </div><!---fim div item-->
 
             <div class="item">
-              <img alt="Carousel Bootstrap Third" src="http://lorempixel.com/1200/500/cats/8" />
+              <img alt="Carousel Bootstrap Third" src="{% static 'images/banner3.jpg'%}" />
             </div><!---fim div item-->
           </div>
           <a class="left carousel-control" href="#carousel-367580" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-367580" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -99,11 +99,12 @@
           <div class="thumbnail">
               <img alt="{{ product.short_description }}" src="{{ product.product_images.first.image_path.url }}" width="200" height="170">
               <div class="caption">
-                  <h3>{{ product.short_description|capfirst }}</h3>
+                  <h4>{{ product.short_description|capfirst }}</h4>
                   <p>{{ product.long_description|capfirst }}</p>
-                  <p>R$ {{ product.sale_value }}</p>
+                  <h3>R$ {{ product.sale_value }}</h3>
                   <p>
-                    <a class="btn btn-primary open-modal" href="#" onclick="montarModalProduto('{{ product.slug }}')">Comprar Agora!</a> <a class="btn btn-default" href="{% url 'products-detail' product.slug %}">Detalhes</a>
+                    <a class="btn btn-primary open-modal" href="#" onclick="montarModalProduto('{{ product.slug }}')">Comprar Agora!</a> 
+                    <a class="btn btn-primary" href="{% url 'products-detail' product.slug %}">Detalhes</a>
                   </p>
               </div>
           </div>
