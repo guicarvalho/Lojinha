@@ -9,28 +9,15 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap3.3.4/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style_form.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style_modal_login.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.jqzoom.css'%}">
 	{% block extra_css %}{% endblock %}
-
-  <style type="text/css">
-    #footer {
-      padding: 40px;
-      margin: 50px 0 0 0;
-      text-align: center;
-    }
-
-    .padding_top_50 {
-      padding-top: 50px;
-    }
-
-    .margin_top_50 {
-      margin-top: 50px;
-    }
-  </style>
 </head>
 <body>
 	<!-- Static navbar -->
   <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <img class="logo" src="{% static 'images/logo.png' %}">
+    <div class="container-fluid menu">
       <div class="navbar-header">
         <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
           <span class="sr-only">Toggle navigation</span>
@@ -121,16 +108,49 @@
     {% block content %}{% endblock %}
   </div>
 
-  <div class="navbar navbar-inverse" id="footer">
-    <div class="container">
-      <p class="text-muted">Anagi &copy; {% now 'Y' %}
-      </p>
-    </div>
-  </div>
+  <!--**********RODAPE**********-->
+  <div class="row" id="footer">
+    <div class="col-md-12 text-center">
+      <footer>
+
+        <div class="col-md-4">
+          <br>
+          <ul class="removeBullet">
+          <li><a href="#">Quem somos</a></li>
+          <li><a href="#">Fale conosco</a></li>
+          <li><a href="#">Quem somos</a></li>
+          </ul>
+        </div><!--fim div coluna-->
+
+        <div class="col-md-4">
+          <br>
+          <h4>Faça já sua encomenda de lembrancinhas para datas especiais!!</h4>
+          <h5>Ligue já (16) 3336-4298</h5>
+
+          <p class="text-muted">Anagi &copy; {% now 'Y' %}</p>
+        </div><!--fim div coluna-->
+
+        <div class="col-md-4">
+          <h4>Formas de pagamento</h4>
+          <img src="">
+
+        </div><!--fim div coluna-->
+
+      </footer>
+    </div><!--fim col-md-12 footer-->
+  </div><!--fim row footer-->
+  <!--**********FIM RODAPE**********-->
 
   <script src="{% static 'js/jquery2.1.1.min.js' %}"></script>
   <script src="{% static 'js/login.js' %}"></script>
 	<script src="{% static 'bootstrap3.3.4/js/bootstrap.min.js' %}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.jqzoom').jqzoom({zoomType : 'reverse'});
+      })
+  </script>
+
 	{% block extra_js %}{% endblock %}
 </body>
 </html>

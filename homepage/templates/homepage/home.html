@@ -5,13 +5,46 @@
 {% block titulo %} Página inicial {% endblock %}
 
 {% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
   <style>
     .zoomContainer{ z-index: 9999;}
     .zoomWindow{ z-index: 9999;}
   </style>
+
 {% endblock %}
 
 {% block content %}
+<!--**********CARROSSEL**********-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="carousel slide" id="carousel-367580">
+          <ol class="carousel-indicators">
+            <li data-slide-to="0" data-target="#carousel-367580"></li>
+            <li data-slide-to="1" data-target="#carousel-367580" class="active"></li>
+            <li data-slide-to="2" data-target="#carousel-367580"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="item">
+              <img alt="Carousel Bootstrap First" src="http://lorempixel.com/1200/500/cats/10" />
+            </div><!---fim div item-->
+
+            <div class="item active">
+              <img alt="Carousel Bootstrap Second" src="http://lorempixel.com/1200/500/cats/9" />
+            </div><!---fim div item-->
+
+            <div class="item">
+              <img alt="Carousel Bootstrap Third" src="http://lorempixel.com/1200/500/cats/8" />
+            </div><!---fim div item-->
+          </div>
+          <a class="left carousel-control" href="#carousel-367580" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-367580" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div><!--Fim carousl slide-->
+      </div><!--Fim col-md-12-->
+    </div><!--Fim row-->
+  </div><!--Fim Container-->
+<!--**********FIM CARROSSEL**********-->
+
+<!--**********MODAL DE PRODUTO**********-->
   <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -49,10 +82,12 @@
       </div>
     </div>
   </div>
+<!--**********FIM MODAL DE PRODUTO**********-->
 
+<!--**********PRODUTOS DE DESTAQUE**********-->
   <div class="row text-center">
     <hr>
-    <h3>Produtos Recentes</h3>
+    <h3>Produtos em destaque</h3>
     <br>
     {% for product in recent_products %}
        <div class="col-md-3 col-sm-6 hero-feature">
@@ -75,3 +110,5 @@
 {% block extra_js %}
   <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
+
+<!--**********FIM PRODUTOS DE DESTAQUE**********-->
