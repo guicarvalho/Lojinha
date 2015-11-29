@@ -1,9 +1,3 @@
-/* Registra o evento de clique nos elementos que possuem a classe open-modal */
-// $('.open-modal').click(function(e) {
-//     montarModalProduto();
-//     $('#myModal').modal('show');
-// });
-
 $("#myModal").on('hidden.bs.modal', function(){});
 
 /*

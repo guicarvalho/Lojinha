@@ -1,6 +1,5 @@
 # coding: utf-8
 
-from django.http import Http404
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,7 +9,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 
 from client.models import Client
-from product.models import Product, ProductTag
+from product.models import Product
 from wishlist.models import WishList, WishListItem
 
 

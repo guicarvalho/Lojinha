@@ -1,8 +1,15 @@
 # coding: utf-8
 
+import json
+
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import ugettext_lazy as _
+
+from correiospy.calculator import CalcPriceDeadline
+from correiospy.format_order_codes import OrderFormats
+from correiospy.service_codes import ServiceCodes
 
 from product.models import Product
 from shopping_cart.models import Cart, ItemCart
@@ -70,3 +77,22 @@ def list_cart_itens(request):
     cart = request.session.get('cart', Cart())
 
     return render(request, 'shopping_cart/shopping_cart_list.html', {'cart': cart})
+
+
+def calculate_delivery(request, zip_code):
+    values = {
+        'zip_code_sender': '14808400',
+        'zip_code_receiver': zip_code,
+        'order_weight': '0.100',
+        'order_format': OrderFormats.BOX_PACKAGE_FORMAT,
+        'order_length': '27',
+        'order_height': '27',
+        'order_width': '27',
+        'order_diameter': '27',
+        'declared_value': '0',
+        'service_code': [ServiceCodes.SEDEX_VAREJO_CODE]
+    }
+
+    calc = CalcPriceDeadline(**values)
+
+    return JsonResponse(json.loads(calc.calculate()))

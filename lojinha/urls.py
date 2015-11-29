@@ -7,7 +7,7 @@ from client.views import create_client
 from product.views import (ProductCreateView, ProductDetailView, ProductListView,
                            ProductCategoryListView, product_detail_json
                            )
-from shopping_cart.views import add_product, list_cart_itens
+from shopping_cart.views import add_product, list_cart_itens, calculate_delivery
 from homepage.views import HomePageView
 from core.views import login, logout
 from wishlist.views import WishListListView, WishListDeleteView, WishListItemDeleteView, add_item_wishlist
@@ -34,6 +34,7 @@ urlpatterns = [
     # Cart
     url(r'cart/add/(?P<slug>[-_\w]+)/$', add_product, name='cart-add'),
     url(r'cart/list/$', list_cart_itens, name='cart-list'),
+    url(r'cart/calculateDelivery/(?P<zip_code>[-\d]+)/$', calculate_delivery, name='calculate-delivery'),
 
     # Client
     url(r'client/add/', create_client, name='client-add'),
