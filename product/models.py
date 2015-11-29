@@ -32,7 +32,7 @@ class Product(models.Model):
         verbose_name_plural = 'Produtos'
 
     def __str__(self):
-        return '{}. {}'.format(self.sku, self.short_description)
+        return u'{}. {}'.format(self.sku, self.short_description)
 
     def get_absolute_url(self):
         return reverse('products-detail', kwargs={'slug', self.slug})
@@ -77,7 +77,7 @@ class ProductDetail(models.Model):
         verbose_name_plural = 'Detalhes Produto'
 
     def __str__(self):
-        return '{}.{}: {}'.format(
+        return u'{}.{}: {}'.format(
             self.product.sku,
             self.product.short_description,
             self.name
@@ -128,7 +128,7 @@ class RelatedProduct(models.Model):
         verbose_name_plural = 'Produtos Relacionados'
 
     def __str__(self):
-        return '{} : {}'.format(self.product_origin.short_description, self.related_product.short_description)
+        return u'{} : {}'.format(self.product_origin.short_description, self.related_product.short_description)
 
 
 class ProductImage(models.Model):
@@ -141,7 +141,7 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='product_images')
 
     def __str__(self):
-        return '{}: {} <{}>'.format(self.id, self.product.short_description, self.image_path.url)
+        return u'{}: {} <{}>'.format(self.id, self.product.short_description, self.image_path.url)
 
 
 class ProductTag(models.Model):
@@ -154,4 +154,4 @@ class ProductTag(models.Model):
     products = models.ManyToManyField(Product)
 
     def __str__(self):
-        return '{}: {}'.format(self.id, self.name)
+        return u'{}: {}'.format(self.id, self.name)

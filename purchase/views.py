@@ -3,6 +3,7 @@
 from django.views.generic import TemplateView
 
 from core.views import LoginRequiredMixin
+from shopping_cart.models import Cart
 from client.models import Client
 
 
@@ -15,5 +16,6 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
         username = self.request.user.email
 
         context['client'] = Client.objects.get(email=username)
+        context['cart'] = self.request.session.get('cart', Cart())
 
         return context
