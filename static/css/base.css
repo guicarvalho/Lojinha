@@ -45,13 +45,26 @@
   color: #91683d;
   background-color:#fff;
   border-color: #91683d;
-  }
+}
 
 .btn-primary:hover{
   color:  #91683d;
   background-color:  #e8b988;
   border-color:  #91683d;
-  }
+}
+
+.btn-block{
+   color: #91683d;
+  background-color:#fff;
+  border-color: #91683d;
+}
+
+.btn-block:hover{
+  color:  #91683d;
+  background-color:  #e8b988;
+  border-color:  #91683d;
+}
+
 
 .btn-default {
   color: #91683d;
@@ -65,8 +78,9 @@
   border-color:  #91683d;
 }
 
-h4 {
-  color: #e6bb8b;
+h3 {
+  color:#91683d;
+  text-align: center;
 }
 
 hr{
@@ -98,3 +112,7 @@ hr{
   background-color: #63412E; 
 }
 
+/*Escopo da página*/
+.escopo{
+  margin-top: 55px;
+}
