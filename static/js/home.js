@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    alert('teste');
+});
+
 $("#myModal").on('hidden.bs.modal', function(){});
 
 /*

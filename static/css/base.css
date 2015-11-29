@@ -76,7 +76,9 @@ hr{
 .logo{
   width: 150px;
   height: 150px;
-  position: absolute; 
+  position: absolute;
+  top: 0;
+  left: 0; 
 }
 
 .menu{
