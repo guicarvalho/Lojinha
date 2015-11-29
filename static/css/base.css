@@ -39,9 +39,6 @@
 
 .btn {
   background-image: none;
-}
-
-.btn {
   color:  #7d542b;
   background-color:#fff;
   border-color:  #7d542b;
@@ -67,15 +64,15 @@
 }
 
 .btn-block:hover{
-  color:  #91683d;
-  background-color: #e8b988;
-  border-color:  #91683d;
+  color: #91683d;
+  background-color:#fff;
+  border-color: #91683d;
 }
 
 .btn-block:active{
-  color:  #91683d;
-  background-color: #e8b988;
-  border-color:  #91683d;
+   color: #91683d;
+  background-color:#fff;
+  border-color: #91683d;
 }
 
 h3{
@@ -147,14 +144,14 @@ label{
 
 }
 
-<<<<<<< HEAD
 /*tags da tela de detalhes de produtos*/
 .label-default{
   background-color: #7d542b;
 }
-=======
+
 /*Escopo da página*/
 .escopo{
   margin-top: 55px;
 }
->>>>>>> f21a1a14fdff41715daf86a1b56040a952882df8
+
+
