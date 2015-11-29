@@ -7,32 +7,136 @@
 {% block content %}
     <div class="row">
         <div class="col-md-6">
-            <h4>Informações do Cliente</h4>
+            <fieldset>
+                <legend>Informações do Cliente</legend>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Nome</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.full_name }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div><br>
+    
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">CPF</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.cpf_cnpj }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">CEP</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.address.zip_code }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Logradouro</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.address.street }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Número</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.address.number }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Complemento</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.address.complement|default:'N/A' }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Cidade</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.address.city }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Bairro</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.address.neigthboor }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Estado</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="{{ client.address.state }}" disabled="disabled">
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+            
+            <div style="margin-top:20px"></div>
+            <input type="button" class="btn btn-primary btn-lg pull-right" value="Finalizar Pedido">
         </div>
 
         <div class="col-md-6">
             <div class="list-group">
-                <a href="#" class="list-group-item disabled">
+                <div href="#" class="list-group-item">
                     <h4 class="list-group-item-heading">Resumo do Pedido</h4>
                     <!-- <p class="list-group-item-text">Alguma descrição aqui</p> -->
-                </a>
-                <a href="#" class="list-group-item">
+                </div>
+                <div href="#" class="list-group-item">
                     <h4 class="list-group-item-heading">Item #1</h4>
                     <p class="list-group-item-text">Alguma descrição aqui</p>
-                </a>
-                <a href="#" class="list-group-item">
+                </div>
+                <div href="#" class="list-group-item">
                     <h4 class="list-group-item-heading">Item #2</h4>
                     <p class="list-group-item-text">Alguma descrição aqui</p>
-                </a>
-                <a href="#" class="list-group-item">
+                </div>
+                <div href="#" class="list-group-item ">
                     <h4 class="list-group-item-heading">Item #3</h4>
                     <p class="list-group-item-text">Alguma descrição aqui</p>
-                </a>
-                <a href="#" class="list-group-item active col-md-12">
+                </div>
+                <div class="list-group-item">
                     <h4 class="list-group-item-heading">
                         Aguardando Pagamento <span style="float:right">R$ 99,99</span>
                     </h4>
-                </a>
+                </div>
             </div>
         </div>
     </div>

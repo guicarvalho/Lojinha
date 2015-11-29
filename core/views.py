@@ -34,9 +34,9 @@ def login(request):
                     login_(request, usuario)
                     message = {'message': 'Login realizado com sucesso !', 'level': 'success'}
                 else:
-                    message = {'message': 'Seu usuário foi desativo !', 'level': 'danger'}
+                    message = {'message': u'Seu usuário foi desativo !', 'level': 'danger'}
             else:
-                message = {'message': 'Seu usuário ou senha estão incorretos !', 'level': 'danger'}
+                message = {'message': u'Seu usuário ou senha estão incorretos !', 'level': 'danger'}
         else:
             response = JsonResponse(form.errors)
             response.status_code = 500

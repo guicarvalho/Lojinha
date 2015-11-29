@@ -27,7 +27,7 @@ class Client(models.Model):
 
     def clean_sex(self):
         if self.sex not in ['M', 'F']:
-            raise ValidationError(_('O sexo informado não é válido!'))
+            raise ValidationError(_(u'O sexo informado não é válido!'))
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)

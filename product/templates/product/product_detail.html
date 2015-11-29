@@ -38,8 +38,8 @@
 		<h3 class="text-center">{{ object.short_description|title }}</h3>
     <p class="text-center">{{ object.long_description|capfirst }}</p>
     <div class="well">
-  		<h5><span style="color: #F32; text-decoration: line-through">De: R$ {{ object.sale_value|add:5|floatformat:2|intcomma }}</span></h5>
-      <h2>Por: R$ {{ object.sale_value|floatformat:2|intcomma }}</h2>
+  		<h5><span style="color: #F32; text-decoration: line-through">De: {{ object.sale_value|add:5|currency_format }}</span></h5>
+      <h2>Por: {{ object.sale_value|currency_format }}</h2>
     </div>
     <hr>
 	  <a href="{% url 'cart-add' object.slug %}" id="btn-add-to-cart" type="button" class="btn btn-success btn-lg btn-block">

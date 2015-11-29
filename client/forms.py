@@ -82,15 +82,15 @@ class ClientForm(forms.ModelForm):
 
 class AddressForm(forms.ModelForm):
     BR_STATES = [
-        ('AC', 'Acre'), ('AL', 'Alagoas'), ('AP', 'Amapá'), ('AM', 'Amazonas'),
-        ('BA', 'Bahia'), ('CE', 'Ceará'), ('DF', 'Distrito Federal'),
-        ('ES', 'Espírito Santo'), ('GO', 'Goiás'), ('MA', 'Maranhão'),
+        ('AC', 'Acre'), ('AL', 'Alagoas'), ('AP', u'Amapá'), ('AM', 'Amazonas'),
+        ('BA', 'Bahia'), ('CE', u'Ceará'), ('DF', 'Distrito Federal'),
+        ('ES', u'Espírito Santo'), ('GO', u'Goiás'), ('MA', u'Maranhão'),
         ('MT', 'Mato Grosso'), ('MS', 'Mato Grosso do Sul'),
-        ('MG', 'Minas Gerais'), ('PA', 'Pará'), ('PB', 'Paraíba'),
-        ('PR', 'Paraná'), ('PE', 'Pernambuco'), ('PI', 'Piauí'),
+        ('MG', 'Minas Gerais'), ('PA', u'Pará'), ('PB', u'Paraíba'),
+        ('PR', u'Paraná'), ('PE', 'Pernambuco'), ('PI', u'Piauí'),
         ('RJ', 'Rio de Janeiro'), ('RN', 'Rio Grande do Norte'),
-        ('RS', 'Rio Grande do Sul'), ('RO', 'Rondônia'), ('RR', 'Roraima'),
-        ('SC', 'Santa Catarina'), ('SP', 'São Paulo'), ('SE', 'Sergipe'),
+        ('RS', 'Rio Grande do Sul'), ('RO', u'Rondônia'), ('RR', 'Roraima'),
+        ('SC', 'Santa Catarina'), ('SP', u'São Paulo'), ('SE', 'Sergipe'),
         ('TO', 'Tocantins')
     ]
 
@@ -107,7 +107,7 @@ class AddressForm(forms.ModelForm):
         labels = {
             'zip_code': _('CEP'),
             'street': _('Logradouro'),
-            'number': _('Número'),
+            'number': _(u'Número'),
             'complement': _('Complemento'),
             'neigthboor': _('Bairro'),
             'city': _('Cidade'),
@@ -120,7 +120,7 @@ class AddressForm(forms.ModelForm):
             }),
             'number': forms.TextInput(attrs={
                 'class': 'form-control input_md',
-                'placeholder': _('Informe o número'),
+                'placeholder': _(u'Informe o número'),
                 'type': 'number'
             }),
             'complement': forms.TextInput(attrs={
