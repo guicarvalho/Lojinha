@@ -1,3 +1,15 @@
+$(document).ready(function() {
+    verifyShowLoginModal();
+});
+
+function verifyShowLoginModal() {
+    var params = window.location.search;
+
+    if (params.length > 0) {
+        $('#modalLogin').modal('show');
+    }
+}
+
 $("#myModal").on('hidden.bs.modal', function(){});
 
 /*

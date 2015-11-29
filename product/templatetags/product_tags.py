@@ -1,5 +1,7 @@
 # coding: utf-8
 
+import locale
+
 from django.template import Library
 
 register = Library()
@@ -22,3 +24,9 @@ def calculate_media(reviews):
         media += review.score
 
     return int(media / total)
+
+
+@register.filter
+def currency_format(value):
+    locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+    return locale.currency(float(value), grouping=True)

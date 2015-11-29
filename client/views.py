@@ -30,11 +30,11 @@ def create_client(request):
                 address.client = client
                 address.save()
 
-                messages.success(request, _('Usuário criado com sucesso !'))
+                messages.success(request, _(u'Usuário criado com sucesso !'))
                 return redirect('home_page')
 
             messages.add_message(request, messages.ERROR,
-                                 _('Já existe usuário cadastrado com esse e-mail !'), extra_tags='danger')
+                                 _(u'Já existe usuário cadastrado com esse e-mail !'), extra_tags='danger')
     else:
         client_form = ClientForm()
         address_form = AddressForm()

@@ -31,7 +31,6 @@ class ProductCreateView(CreateView):
 
     @method_decorator(login_required)
     def form_valid(self, form):
-        # form.instance.created_by = self.request.user
         return super(ProductCreateView, self).form_valid(form)
 
 

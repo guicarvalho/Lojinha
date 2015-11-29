@@ -16,9 +16,11 @@
 <body>
 	<!-- Static navbar -->
   <nav class="navbar navbar-default">
-    <img class="logo" src="{% static 'images/logo.png' %}">
     <div class="container-fluid menu">
       <div class="navbar-header">
+        
+        <img class="logo" src="{% static 'images/logo.png' %}">
+        
         <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -144,12 +146,6 @@
   <script src="{% static 'js/jquery2.1.1.min.js' %}"></script>
   <script src="{% static 'js/login.js' %}"></script>
 	<script src="{% static 'bootstrap3.3.4/js/bootstrap.min.js' %}"></script>
-
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.jqzoom').jqzoom({zoomType : 'reverse'});
-      })
-  </script>
 
 	{% block extra_js %}{% endblock %}
 </body>

@@ -96,7 +96,9 @@ hr{
 .logo{
   width: 150px;
   height: 150px;
-  position: absolute; 
+  position: absolute;
+  top: 0;
+  left: 0; 
 }
 
 .menu{
@@ -145,7 +147,14 @@ label{
 
 }
 
+<<<<<<< HEAD
 /*tags da tela de detalhes de produtos*/
 .label-default{
   background-color: #7d542b;
 }
+=======
+/*Escopo da página*/
+.escopo{
+  margin-top: 55px;
+}
+>>>>>>> f21a1a14fdff41715daf86a1b56040a952882df8

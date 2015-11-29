@@ -15,8 +15,14 @@ function login() {
                 $('#AjaxMessages').empty();
                 $('#AjaxMessages').append('<p class="alert alert-'+ data.level +'">'+ data.message +'</p>');
 
+                var nextPage = window.location.search;
+
                 if (data.level == 'success') {
-                    window.location = '/';
+                    if (nextPage.split('=')[0].length > 0) {
+                        window.location = nextPage.split('=')[1];
+                    } else {
+                        window.location = '/';
+                    }
                 }
             },
         error:
