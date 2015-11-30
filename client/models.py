@@ -34,7 +34,7 @@ class Client(models.Model):
 
     def full_name(self):
         """ Returns first name and last name of client. """
-        return '{0} {1}'.format(self.first_name, self.last_name)
+        return u'{0} {1}'.format(self.first_name, self.last_name)
 
 
 class Address(models.Model):
@@ -58,4 +58,4 @@ class Address(models.Model):
     client = models.OneToOneField(Client, related_name='address', blank=True)
 
     def __str__(self):
-        return '{}, {}'.format(self.street, self.number)
+        return u'{}, {}'.format(self.street, self.number)

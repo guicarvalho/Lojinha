@@ -2,32 +2,73 @@
 
 {% load staticfiles %}
 
+{% load core_tags %}
+
 {% block titulo %} Carrinho de Compras {% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/shopping_cart.css' %}">
+{% endblock %}
 
 {% block content %}
     <h1>Carrinho de Compra</h1>
     <hr>
+    
+    <form action="{% url 'update-cart' %}" method="POST">{% csrf_token %}
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+                <th></th>
+            </thead>
+            <tbody>
+            {% for item in cart.cart_itens.all %}
+            <tr>
+                <td><img src="{{ item.product.product_images.first.image_path.url }}" width="100" height="80"></td>
+                <td class="vert-align">{{ item.product.long_description }}</td>
+                <td class="vert-align">
+                    {{ form.amount }}
 
-    <table class="table">
-        <thead>
-            <th>#</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor</th>
-        </thead>
-        <tbody>
-        {% for item in cart.cart_itens.all %}
-        <tr>
-            <td>{{ item.product.short_description|title }}</td>
-            <td>{{ item.product.long_description }}</td>
-            <td>{{ item.amount }}</td>
-            <td>R$ {{ item.value }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <!-- <input id="{{ form.amount.auto_id }}" type="text" class="form-control" style="width:50px" value="{{ item.amount }}"> --></td>
+                <td class="vert-align">{{ item.value|currency_format }}</td>
+                <td class="vert-align">
+                    <a href="{% url 'cartitem-delete' item.id %}" type="button" class="btn btn-sm btn-danger" title="Remover">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+            </tr>
 
-    <div class="row">
+            {% empty %}
+                <tr>
+                    <td colspan="5">
+                        <h1>Seu carrinho está vazio :'(</h1>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            {% if cart.cart_itens.all %}
+            <tfoot style="background-color: #7d542b">
+                <tr>
+                    <td colspan="2">
+                        <a href="{% url 'purchase-checkout' %}" type="button" class="btn btn-lg btn-success">
+                            <span class="glyphicon glyphicon-credit-card">&nbsp;</span>Finalizar Compra
+                        </a>
+                    </td>
+                    <td colspan="1">
+                        <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-refresh" title="Atualizar Carrinho"></span></button>
+                    </td>
+                    <td colspan="2" class="vert-align">
+                        <label >{{ cart.total_value|currency_format }}</label>
+                    </td>
+                </tr>
+            </tfoot>
+            {% endif %}
+        </table>
+    </form>
+
+    <!--<div class="row">
         <div class="col-md-3 pull-right">
             <label for="cep">Calcule o valor do frete:</label>
             <div class="input-group">
@@ -38,23 +79,12 @@
             </div>
         </div>
     </div>
-
-    <div style="margin-bottom: 20px;"></div>
-
     
     <div id="deliveryContainer" class="row" style="display:none;">
         <div class="col-md-12 jumbotron">
             <p>Valor do frete: R$ <span id="deliveryPrice"></span>  </p>
         </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <a href="{% url 'purchase-checkout' %}" type="button" class="btn btn-lg btn-success pull-right">
-                <span class="glyphicon glyphicon-credit-card">&nbsp;</span>Finalizar Compra</a>
-        </div>
-    </div>
+    </div>-->
 
 {% endblock %}
 

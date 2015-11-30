@@ -2,6 +2,8 @@
 
 {% load staticfiles %}
 
+{% load core_tags %}
+
 {% block titulo %} Página inicial {% endblock %}
 
 {% block extra_css %}
@@ -101,7 +103,7 @@
               <div class="caption">
                   <h4>{{ product.short_description|capfirst }}</h4>
                   <p>{{ product.long_description|capfirst }}</p>
-                  <h3>R$ {{ product.sale_value }}</h3>
+                  <h3>{{ product.sale_value|currency_format }}</h3>
                   <p>
                     {# <a class="btn btn-primary open-modal" href="#" onclick="montarModalProduto('{{ product.slug }}')">Comprar Agora!</a>  #}
                     <a class="btn btn-primary btn-block" href="{% url 'products-detail' product.slug %}">Comprar</a>

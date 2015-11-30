@@ -54,7 +54,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categorias'
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return u'{}'.format(self.name)
 
 
 class ProductDetail(models.Model):
@@ -106,7 +106,7 @@ class ProductReview(models.Model):
         verbose_name_plural = 'Revisões Produto'
 
     def __str__(self):
-        return 'SKU {} ({}): {} [{}]'.format(
+        return u'SKU {} ({}): {} [{}]'.format(
             self.product.sku,
             self.product.short_description,
             self.client,
