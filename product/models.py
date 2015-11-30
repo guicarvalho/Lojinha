@@ -4,6 +4,7 @@ from datetime import datetime
 
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.encoding import smart_str
 
 
 class Product(models.Model):
@@ -32,7 +33,7 @@ class Product(models.Model):
         verbose_name_plural = 'Produtos'
 
     def __str__(self):
-        return u'{}. {}'.format(self.sku, self.short_description)
+        return smart_str(u'{}. {}'.format(self.sku, self.short_description))
 
     def get_absolute_url(self):
         return reverse('products-detail', kwargs={'slug', self.slug})
@@ -102,8 +103,8 @@ class ProductReview(models.Model):
 
     class Meta:
         ordering = ['-creation_date']
-        verbose_name = 'Revisão Produto'
-        verbose_name_plural = 'Revisões Produto'
+        verbose_name = u'Revisão Produto'
+        verbose_name_plural = u'Revisões Produto'
 
     def __str__(self):
         return u'SKU {} ({}): {} [{}]'.format(
@@ -141,7 +142,7 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='product_images')
 
     def __str__(self):
-        return u'{}: {} <{}>'.format(self.id, self.product.short_description, self.image_path.url)
+        return smart_str(u'{}: {} <{}>'.format(self.id, self.product.short_description, self.image_path.url))
 
 
 class ProductTag(models.Model):
