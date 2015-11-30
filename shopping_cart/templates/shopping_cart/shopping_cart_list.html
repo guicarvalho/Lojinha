@@ -11,9 +11,8 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Carrinho de Compra</h1>
-    <hr>
-    
+    <h3>Carrinho de Compra</h3>
+
     <form action="{% url 'update-cart' %}" method="POST">{% csrf_token %}
         <table class="table">
             <thead>
