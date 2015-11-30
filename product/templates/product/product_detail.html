@@ -42,10 +42,10 @@
       <h2>Por: {{ object.sale_value|currency_format }}</h2>
     </div>
     <hr>
-	  <a href="{% url 'cart-add' object.slug %}" id="btn-add-to-cart" type="button" class="btn btn-success btn-lg btn-block">
+	  <a href="{% url 'cart-add' object.slug %}" id="btn-add-to-cart" type="button" class="btn btn-lg btn-block">
 		  <span class="glyphicon glyphicon-shopping-cart"></span> Adicionar ao Carrinho
 	  </a>
-	  <a href="{% url 'whishlist-add' object.slug %}" class="btn btn-default btn-lg btn-block">
+	  <a href="{% url 'whishlist-add' object.slug %}" class="btn btn-lg btn-block">
 		  <span class="glyphicon glyphicon-heart"></span> Adicionar à Lista de Desejos
 	  </a>
 

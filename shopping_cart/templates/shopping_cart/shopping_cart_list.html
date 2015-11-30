@@ -11,12 +11,8 @@
 {% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
     <h3>Carrinho de Compra</h3>
-=======
-    <h1>Carrinho de Compra</h1>
-    <hr>
-    
+
     <form action="{% url 'update-cart' %}" method="POST">{% csrf_token %}
         <table class="table">
             <thead>
@@ -42,7 +38,6 @@
                     </a>
                 </td>
             </tr>
->>>>>>> 85fbf76f02741b0752324010fcab34f9ec07a46e
 
             {% empty %}
                 <tr>
