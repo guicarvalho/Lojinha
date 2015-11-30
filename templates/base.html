@@ -46,6 +46,7 @@
         <ul class="nav navbar-nav navbar-right">
 		  <li><a href="">Seja bem vindo {% if user.is_authenticated %} {{ user.first_name }} {% else %} Visitante {% endif %} !</a></li>
           <li><a href="{% url 'cart-list' %}">Meu Carrinho</a></li>
+          <li><a href="{% url 'whishlist-list' %}">Lista de desejos</a></li>
           <li>
 			  {% if not user.is_authenticated %}
 			  	<a href="#" data-toggle="modal" data-target="#modalLogin">Login</a>
@@ -117,15 +118,13 @@
       <footer>
 
         <div class="col-md-4">
-          <br>
-          <ul class="removeBullet">
-          <li><a href="#">Quem somos</a></li>
-          <li><a href="#">Fale conosco</a></li>
-          </ul>
+          <h4>Acompanhe</h4>
+          <img src="{% static 'images/facebook.png' %}" width="50" height="50">
+          <img src="{% static 'images/twitter.png' %}" width="50" height="50">
+          <img src="{% static 'images/insta.png' %}" width="50" height="50">
         </div><!--fim div coluna-->
 
         <div class="col-md-4">
-          <br>
           <h4>Faça já sua encomenda de lembrancinhas para datas especiais!!</h4>
           <h4>Ligue já (16) 3336-4298</h4>
 
@@ -134,8 +133,8 @@
 
         <div class="col-md-4">
           <h4>Formas de pagamento</h4>
-          <img src="{% static 'images/pagseguro.jpg' %}" width="130" height="40">
-          <img src="{% static 'images/paypal.jpg' %}" width="130" height="40">
+          <img src="{% static 'images/pagseguro.png' %}" width="130" height="40">
+          <img src="{% static 'images/paypal.png' %}" width="130" height="40">
         </div><!--fim div coluna-->
 
       </footer>

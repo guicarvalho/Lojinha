@@ -6,8 +6,7 @@
     <form action="" method="post">{% csrf_token %}
         <div class="jumbotron">
             <h2 class="display-3">Remover produto</h2>
-            
-            <hr class="m-y-md">
+        	<br>
 
             <p class="lead">Tem certeza que deseja remover "{{ object.product.short_description|title }}" da sua lista de desejos?</p>
             
