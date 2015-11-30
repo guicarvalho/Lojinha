@@ -10,7 +10,7 @@ from product.views import (ProductCreateView, ProductDetailView, ProductListView
                            ProductCategoryListView, product_detail_json
                            )
 from purchase.views import CheckoutView
-from shopping_cart.views import add_product, list_cart_itens, calculate_delivery
+from shopping_cart.views import add_product, list_cart_itens, calculate_delivery, remove_item_cart, update_cart
 from wishlist.views import WishListListView, WishListDeleteView, WishListItemDeleteView, add_item_wishlist
 
 
@@ -36,6 +36,8 @@ urlpatterns = [
     url(r'cart/add/(?P<slug>[-_\w]+)/$', add_product, name='cart-add'),
     url(r'cart/list/$', list_cart_itens, name='cart-list'),
     url(r'cart/calculateDelivery/(?P<zip_code>[-\d]+)/$', calculate_delivery, name='cart-calculate-delivery'),
+    url(r'cart/remove/(?P<pk>\d+)/', remove_item_cart, name='cartitem-delete'),
+    url(r'cart/update/', update_cart, name='update-cart'),
 
     # Purchase
     url(r'checkout/$', CheckoutView.as_view(), name='purchase-checkout'),

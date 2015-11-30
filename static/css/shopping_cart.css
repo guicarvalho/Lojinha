@@ -1,0 +1,13 @@
+h1 {color: #7d542b;}
+
+thead {color: #7d542b;}
+
+.table tbody > tr > td {vertical-align: top;}
+
+.table tbody > tr > td.vert-align{vertical-align: middle;}
+
+tfoot > tr > td > label {
+    color: #fff;
+    font-size: 20px;
+    padding-top: 10px; 
+}

@@ -13,6 +13,7 @@ from correiospy.service_codes import ServiceCodes
 
 from product.models import Product
 from shopping_cart.models import Cart, ItemCart
+from shopping_cart.forms import CartForm
 
 
 def add_product(request, slug):
@@ -76,7 +77,9 @@ def _calculate_cart_value(request):
 def list_cart_itens(request):
     cart = request.session.get('cart', Cart())
 
-    return render(request, 'shopping_cart/shopping_cart_list.html', {'cart': cart})
+    form = CartForm(initial={'amount': 10})
+
+    return render(request, 'shopping_cart/shopping_cart_list.html', {'cart': cart, 'form': form})
 
 
 def calculate_delivery(request, zip_code):
@@ -96,3 +99,21 @@ def calculate_delivery(request, zip_code):
     calc = CalcPriceDeadline(**values)
 
     return JsonResponse(json.loads(calc.calculate()))
+
+
+def remove_item_cart(request, pk):
+    cart = request.session.get('cart')
+
+    cart.cart_itens.filter(id=pk).delete()
+
+    _calculate_cart_value(request)
+
+    return redirect('cart-list')
+
+
+def update_cart(request):
+    form = CartForm(request.POST)
+
+    import ipdb; ipdb.set_trace()
+
+    return redirect('cart-list')

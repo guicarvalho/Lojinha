@@ -2,6 +2,8 @@
 
 {% load staticfiles %}
 
+{% load core_tags %}
+
 {% block titulo %} Fechar Pedido {% endblock %}
 
 {% block content %}
@@ -127,7 +129,8 @@
                         </div>
                         <div class="col-md-9">
                             <h4 class="list-group-item-heading">{{ item.product.short_description|title }}</h4>
-                            <p class="list-group-item-text">{{ item.product.long_description|title }} <b>x {{ item.amount }}</b> </p>
+                            <p class="list-group-item-text">{{ item.product.long_description|title }} <b>x {{ item.amount }} </b></p>
+                            <span class="pull-right" style="color: #228B22; font-weight: bold;">{{ item.value|currency_format }}</span>
                         </div>
                         <div style="clear:both"></div>
                     </div>
@@ -135,7 +138,7 @@
 
                 <div class="list-group-item active">
                     <h4 class="list-group-item-heading">
-                        Aguardando Pagamento <span style="float:right">R$ {{ cart.total_value }}</span>
+                        Aguardando Pagamento <span style="float:right">{{ cart.total_value|currency_format }}</span>
                     </h4>
                 </div>
             </div>
