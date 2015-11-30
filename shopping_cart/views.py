@@ -13,7 +13,6 @@ from correiospy.service_codes import ServiceCodes
 
 from product.models import Product
 from shopping_cart.models import Cart, ItemCart
-from shopping_cart.forms import CartForm
 
 
 def add_product(request, slug):
@@ -36,14 +35,14 @@ def add_product(request, slug):
         cart_item = ItemCart()
         cart_item.product = product
         cart_item.cart = cart
-        cart_item.amount = 1  # TODO: remove fixed amount
+        cart_item.amount = 1
         cart_item.value = cart_item.amount * cart_item.product.sale_value
         cart_item.save()
         request.session['cart'] = cart
         messages.success(request, _('Produto adicionado no carrinho com sucesso!'))
     else:
         item = item_in_cart
-        item.amount += 1  # TODO: remove fixed amount
+        item.amount += 1
         item.value = item.amount * item.product.sale_value
         item.save()
         messages.info(request, _('Produto atualizado com sucesso!'))
@@ -77,9 +76,7 @@ def _calculate_cart_value(request):
 def list_cart_itens(request):
     cart = request.session.get('cart', Cart())
 
-    form = CartForm(initial={'amount': 10})
-
-    return render(request, 'shopping_cart/shopping_cart_list.html', {'cart': cart, 'form': form})
+    return render(request, 'shopping_cart/shopping_cart_list.html', {'cart': cart})
 
 
 def calculate_delivery(request, zip_code):
@@ -112,8 +109,18 @@ def remove_item_cart(request, pk):
 
 
 def update_cart(request):
-    form = CartForm(request.POST)
+    params = request.POST.keys()
+    params.remove('csrfmiddlewaretoken')
 
-    import ipdb; ipdb.set_trace()
+    cart = request.session.get('cart')
+    items = cart.cart_itens.filter(id__in=params)
+
+    for item in items:
+        new_amount = request.POST.get(str(item.id))
+        item.amount = abs(int(new_amount))
+        item.value = item.amount * item.product.sale_value
+        item.save()
+
+    _calculate_cart_value(request)
 
     return redirect('cart-list')

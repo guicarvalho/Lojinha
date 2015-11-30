@@ -19,8 +19,9 @@
             <thead>
                 <th>#</th>
                 <th>Descrição</th>
+                <th>Preço</th>
                 <th>Quantidade</th>
-                <th>Valor</th>
+                <th>Total</th>
                 <th></th>
             </thead>
             <tbody>
@@ -28,10 +29,9 @@
             <tr>
                 <td><img src="{{ item.product.product_images.first.image_path.url }}" width="100" height="80"></td>
                 <td class="vert-align">{{ item.product.long_description }}</td>
+                <td class="vert-align">{{ item.product.sale_value|currency_format }}</td>
                 <td class="vert-align">
-                    {{ form.amount }}
-
-                <!-- <input id="{{ form.amount.auto_id }}" type="text" class="form-control" style="width:50px" value="{{ item.amount }}"> --></td>
+                    <input name="{{ item.id }}" type="text" class="form-control" style="width:50px" value="{{ item.amount }}"></td>
                 <td class="vert-align">{{ item.value|currency_format }}</td>
                 <td class="vert-align">
                     <a href="{% url 'cartitem-delete' item.id %}" type="button" class="btn btn-sm btn-danger" title="Remover">
@@ -51,7 +51,7 @@
             {% if cart.cart_itens.all %}
             <tfoot style="background-color: #7d542b">
                 <tr>
-                    <td colspan="2">
+                    <td colspan="3">
                         <a href="{% url 'purchase-checkout' %}" type="button" class="btn btn-lg btn-success">
                             <span class="glyphicon glyphicon-credit-card">&nbsp;</span>Finalizar Compra
                         </a>
