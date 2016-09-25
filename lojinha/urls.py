@@ -15,7 +15,7 @@ from wishlist.views import WishListListView, WishListDeleteView, WishListItemDel
 
 
 urlpatterns = [
-    # url(r'^grappelli/', include('grappelli.urls')),  # grappelli URLS
+    url(r'^grappelli/', include('grappelli.urls')),  # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', HomePageView.as_view(), name='home_page'),

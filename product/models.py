@@ -1,10 +1,11 @@
 # coding: utf-8
 
+from __future__ import unicode_literals
+
 from datetime import datetime
 
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.encoding import smart_str
 
 
 class Product(models.Model):
@@ -32,8 +33,8 @@ class Product(models.Model):
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
 
-    def __str__(self):
-        return smart_str(u'{}. {}'.format(self.sku, self.short_description))
+    def __unicode__(self):
+        return '{}. {}'.format(self.sku, self.short_description)
 
     def get_absolute_url(self):
         return reverse('products-detail', kwargs={'slug', self.slug})
@@ -54,8 +55,8 @@ class Category(models.Model):
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'
 
-    def __str__(self):
-        return u'{}'.format(self.name)
+    def __unicode__(self):
+        return '{}'.format(self.name)
 
 
 class ProductDetail(models.Model):
@@ -77,12 +78,12 @@ class ProductDetail(models.Model):
         verbose_name = 'Detalhe Produto'
         verbose_name_plural = 'Detalhes Produto'
 
-    def __str__(self):
-        return u'{}.{}: {}'.format(
+    def __unicode__(self):
+        return '{}.{}: {}'.format(
             self.product.sku,
             self.product.short_description,
             self.name
-            )
+        )
 
 
 class ProductReview(models.Model):
@@ -103,11 +104,11 @@ class ProductReview(models.Model):
 
     class Meta:
         ordering = ['-creation_date']
-        verbose_name = u'Revisão Produto'
-        verbose_name_plural = u'Revisões Produto'
+        verbose_name = 'Revisão Produto'
+        verbose_name_plural = 'Revisões Produto'
 
-    def __str__(self):
-        return u'SKU {} ({}): {} [{}]'.format(
+    def __unicode__(self):
+        return 'SKU {} ({}): {} [{}]'.format(
             self.product.sku,
             self.product.short_description,
             self.client,
@@ -128,8 +129,8 @@ class RelatedProduct(models.Model):
         verbose_name = 'Produto Relacionado'
         verbose_name_plural = 'Produtos Relacionados'
 
-    def __str__(self):
-        return u'{} : {}'.format(self.product_origin.short_description, self.related_product.short_description)
+    def __unicode__(self):
+        return '{} : {}'.format(self.product_origin.short_description, self.related_product.short_description)
 
 
 class ProductImage(models.Model):
@@ -141,8 +142,8 @@ class ProductImage(models.Model):
     image_path = models.ImageField(upload_to='products')
     product = models.ForeignKey(Product, related_name='product_images')
 
-    def __str__(self):
-        return smart_str(u'{}: {} <{}>'.format(self.id, self.product.short_description, self.image_path.url))
+    def __unicode__(self):
+        return '{}: {} <{}>'.format(self.id, self.product.short_description, self.image_path.url)
 
 
 class ProductTag(models.Model):
@@ -154,5 +155,5 @@ class ProductTag(models.Model):
     name = models.CharField(max_length=40)
     products = models.ManyToManyField(Product)
 
-    def __str__(self):
-        return u'{}: {}'.format(self.id, self.name)
+    def __unicode__(self):
+        return '{}: {}'.format(self.id, self.name)
