@@ -11,30 +11,23 @@
 {% block content %}
 
 <div class="row">
+
 	<div class="col-md-6">
-		
-   <img src="{{ object.product_images.first.image_path.url }}" alt="{{ recent_products.0.short_description }}" width="419" height="320">
-
-    <!-- 
-    <a href="{{ object.product_images.first.image_path.url }}" class="jqzoom" title="Imagem">
-      <img src="{{ object.product_images.first.image_path.url }}" title="Ferrari" width="419" height="320" />
-    </a> -->
-
-    <!-- <div class="row">
-      <div class="col-md-10">
-            <div style="padding-top: 5px;">
-            {% for image in object.product_images.all %}
-           <a href="{{ object.product_images.first.image_path.url }}" class="jqzoom" title="Imagem">
-            <img src="{{ object.product_images.first.image_path.url }}" title="Ferrari"  width="70" height="50"/>
-    </a>
-                <img src="{{ image.image_path.url }}" alt="{{ image.product.short_description }}" style="padding-bottom: 5px;" width="70" height="50">
-            {% endfor %}
-            </div>
-          </div>
-         </div> -->
-
+		<img id="big-image" src="{{ object.product_images.first.image_path.url }}" data-zoom-image="{{ object.product_images.first.image_path.url }}"
+		 title="{{ object.short_description }}" alt="{{ object.short_description }}" width="419" height="320">
+		<div class="row">
+	    	<div class="col-md-10">
+	            <div id="gallery" style="padding-top: 5px;">
+	            {% for image in object.product_images.all %}
+	           		<a href="#" data-image="{{ image.image_path.url }}" data-zoom-image="{{ image.image_path.url }}">
+	            		<img class="img-thumbnail" src="{{ image.image_path.url }}" width="70" height="50"/>
+					</a>
+	        	{% endfor %}
+	            </div>
+			</div>
+		</div>
 	</div>
-  
+
 	<div class="col-md-6">
 		<h3 class="text-center">{{ object.short_description|title }}</h3>
     <p>{{ object.long_description|capfirst }}</p>
@@ -118,4 +111,9 @@
 
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+	<script src="{% static 'elevateZoom/elevateZoom.js' %}"></script>
+	<script src="{% static 'js/product-detail.js' %}"></script>
 {% endblock %}
